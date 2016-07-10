@@ -16,7 +16,7 @@ void battle(map<int,string> options,int player,int computer)
 
 int main()
 {
-	int option;
+	int playerOption;
 
 	map<int,string> options;
 	options[1] = "Rock";
@@ -32,12 +32,12 @@ int main()
 
 	do
 	{
-		cout << "choose an option: ";
-		cin >> option;
+		cout << "Choose an option: ";
+		cin >> playerOption;
 		if (option != 0){
-			battle(options,option,computer(options.size()));
+			battle(options,playerOption,computer(options.size()));
 		}
-	} while (option != 0);
+	} while (playerOption != 0);
 
 	return 0;
 }
