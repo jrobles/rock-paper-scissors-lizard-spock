@@ -3,7 +3,7 @@
 
 using namespace std;
 
-int computer(int size) 
+int computerOption(int size) 
 {
 	return rand() % size + 1;
 }
@@ -35,7 +35,7 @@ int main()
 		cout << "Choose an option: ";
 		cin >> playerOption;
 		if (option != 0){
-			battle(options,playerOption,computer(options.size()));
+			battle(options,playerOption,computerOption(options.size()));
 		}
 	} while (playerOption != 0);
 
