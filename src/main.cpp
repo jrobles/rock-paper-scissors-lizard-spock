@@ -3,22 +3,8 @@
 
 using namespace std;
 
-// Used to randomly select a number from 1 - the number of options.
-int computerOption(int size) 
-{
-	return rand() % size + 1;
-}
-
-// Used to initiate the player vs. computer match.
-void battle(map<int,string> options,int player,int computer)
-{
-
-	cout << "Player choose: " << options[player] << endl;
-	cout << "Computer choose: " << options[computer] << endl;
-
-
-	cout << "The winner is: Me" << endl; 
-}
+int computerOption(int size); 
+void battle(map<int,string> options,int player,int computer);
 
 int main()
 {
@@ -50,4 +36,21 @@ int main()
 	} while (playerOption != 0);
 
 	return 0;
+}
+
+// Used to randomly select a number from 1 - the number of options.
+int computerOption(int size) 
+{
+	return rand() % size + 1;
+}
+
+// Used to initiate the player vs. computer match.
+void battle(map<int,string> options,int player,int computer)
+{
+
+	cout << "Player choose: " << options[player] << endl;
+	cout << "Computer choose: " << options[computer] << endl;
+
+
+	cout << "The winner is: Me" << endl; 
 }
