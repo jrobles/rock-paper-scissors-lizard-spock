@@ -25,12 +25,12 @@ int main()
 
 	// Print out the option to exit the game.
 	cout << "0\texit" << endl;
-
+	
 	do
 	{
 		cout << "Choose an option: ";
 		cin >> playerOption;
-		if (playerOption != 0){ // meh
+		if (playerOption != 0) { // meh
 			battle(options,playerOption,computerOption(options.size()));
 		}
 	} while (playerOption != 0);
@@ -47,10 +47,9 @@ int computerOption(int size)
 // Used to initiate the player vs. computer match.
 void battle(map<int,string> options,int player,int computer)
 {
-
+	// Print the match details
 	cout << "Player choose: " << options[player] << endl;
 	cout << "Computer choose: " << options[computer] << endl;
 
-
-	cout << "The winner is: Me" << endl; 
+	// Based on the params, select the winner of the match
 }
