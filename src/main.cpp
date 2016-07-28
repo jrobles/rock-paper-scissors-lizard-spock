@@ -9,7 +9,7 @@ void battle(map<int,string> options,int player,int computer);
 int main()
 {
 	int playerOption;
-
+	
 	// Map with the available options.
 	map<int,string> options;
 	options[1] = "Rock";
@@ -47,9 +47,28 @@ int computerOption(int size)
 // Used to initiate the player vs. computer match.
 void battle(map<int,string> options,int player,int computer)
 {
-	// Print the match details
+
+	int rules[6][2]; // janky!
+
+	// Define the rules based on the options map
+	rules[1][0] = 3; // Rock > Scissors
+	rules[1][1] = 5; // Rock > Lizard
+	rules[2][0] = 1; // Paper > Rock
+	rules[2][1] = 5; // Paper > Spock
+	rules[3][0] = 2; // Sissors > Paper
+	rules[3][1] = 4; // Scissors > Lizard
+	rules[4][0] = 1; // Lizard > Paper
+	rules[4][1] = 5; // Lizard > Spock
+	rules[5][0] = 1; // Spock > Rock
+	rules[5][1] = 3; // Spock > Scissors
+
+	// There can only be one!! Or a tie...
 	cout << "Player choose: " << options[player] << endl;
 	cout << "Computer choose: " << options[computer] << endl;
+	if (player == computer)
+	{
+		cout << "It's a tie!!!" << endl;	
+	} else {
 
-	// Based on the params, select the winner of the match
+	}
 }
