@@ -23,6 +23,7 @@ int main()
 	options[4] = "Lizard";
 	options[5] = "Spock";
 
+	// Print out the fancy program header
 	printHeader(title);
 
 	// Loop through the options map and print out the options menu.
@@ -87,11 +88,11 @@ void battle(map<int,string> options,int player,int computer)
 	rules[5][1] = 3; // Spock > Scissors
 
 	// There can only be one!! Or a tie...
-	cout << "Player choose: " << options[player] << endl;
-	cout << "Computer choose: " << options[computer] << endl;
+	cout << "\nPlayer choose: " << options[player] << endl;
+	cout << "Computer choose: " << options[computer] << "\n" << endl;
 	if (player == computer)
 	{
-		cout << "It's a tie!!!" << endl;	
+		cout << "!!! It's a tie !!!\n" << endl;	
 	} else {
 
 	}
