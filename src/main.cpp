@@ -5,6 +5,7 @@ using namespace std;
 
 int computerOption(int size); 
 void battle(map<int,string> options,int player,int computer);
+void printBorder(string val);
 
 int main()
 {
@@ -17,6 +18,8 @@ int main()
 	options[3] = "Scissors";
 	options[4] = "Lizard";
 	options[5] = "Spock";
+
+	printBorder("#");
 
 	// Loop through the options map and print out the options menu.
 	for (map<int, string>::iterator it = options.begin(); it != options.end(); it++ ) {
@@ -38,6 +41,14 @@ int main()
 	return 0;
 }
 
+void printBorder(string val)
+{
+	for (int i = 1;i <= 80;i++) {
+		cout << val;
+	}
+	cout << endl;		
+}
+
 // Used to randomly select a number from 1 - the number of options.
 int computerOption(int size) 
 {
@@ -47,7 +58,6 @@ int computerOption(int size)
 // Used to initiate the player vs. computer match.
 void battle(map<int,string> options,int player,int computer)
 {
-
 	int rules[6][2]; // janky!
 
 	// Define the rules based on the options map
