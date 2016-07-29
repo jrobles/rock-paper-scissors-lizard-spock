@@ -3,9 +3,13 @@
 
 using namespace std;
 
+const int width = 80;
+const string title = "Rock, Paper, Scissors, Lizzard, Spock";
+
 int computerOption(int size); 
 void battle(map<int,string> options,int player,int computer);
 void printBorder(string val);
+void printHeader(string val);
 
 int main()
 {
@@ -19,7 +23,7 @@ int main()
 	options[4] = "Lizard";
 	options[5] = "Spock";
 
-	printBorder("#");
+	printHeader(title);
 
 	// Loop through the options map and print out the options menu.
 	for (map<int, string>::iterator it = options.begin(); it != options.end(); it++ ) {
@@ -28,7 +32,8 @@ int main()
 
 	// Print out the option to exit the game.
 	cout << "0\texit" << endl;
-	
+	printBorder("-");
+
 	do
 	{
 		cout << "Choose an option: ";
@@ -36,14 +41,23 @@ int main()
 		if (playerOption != 0) { // meh
 			battle(options,playerOption,computerOption(options.size()));
 		}
+		printBorder("-");
+
 	} while (playerOption != 0);
 
 	return 0;
 }
 
+void printHeader(string val)
+{
+	printBorder("#");
+	cout << val << endl;
+	printBorder("#");
+}
+
 void printBorder(string val)
 {
-	for (int i = 1;i <= 80;i++) {
+	for (int i = 1;i <= width;i++) {
 		cout << val;
 	}
 	cout << endl;		
