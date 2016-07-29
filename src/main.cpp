@@ -10,6 +10,7 @@ int computerOption(int size);
 void battle(map<int,string> options,int player,int computer);
 void printBorder(string val);
 void printHeader(string val);
+void centerString(string val);
 
 int main()
 {
@@ -49,10 +50,21 @@ int main()
 	return 0;
 }
 
+void centerString(string val)
+{
+	int padding = (width - val.length()) / 2;
+
+	for (int i = 1;i <= padding;i++)
+	{
+		cout << " ";
+	}
+	cout << val << endl;
+}
+
 void printHeader(string val)
 {
 	printBorder("#");
-	cout << val << endl;
+	centerString(val);
 	printBorder("#");
 }
 
@@ -92,7 +104,7 @@ void battle(map<int,string> options,int player,int computer)
 	cout << "Computer choose: " << options[computer] << "\n" << endl;
 	if (player == computer)
 	{
-		cout << "!!! It's a tie !!!\n" << endl;	
+		centerString("!!! It's a tie !!!");	
 	} else {
 
 	}
