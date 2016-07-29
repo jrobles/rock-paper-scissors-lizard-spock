@@ -29,11 +29,11 @@ int main()
 
 	// Loop through the options map and print out the options menu.
 	for (map<int, string>::iterator it = options.begin(); it != options.end(); it++ ) {
-		cout << it->first << "\t" << it->second << endl;
+		cout << "[" << it->first << "]" << "\t" << it->second << endl;
 	}
 
 	// Print out the option to exit the game.
-	cout << "0\texit" << endl;
+	cout << "[0]\texit" << endl;
 	printBorder("-");
 
 	do
@@ -50,10 +50,13 @@ int main()
 	return 0;
 }
 
+// Takes a string and prints it out with padding based on the width CONST.
 void centerString(string val)
 {
+	// Determine how much left padding is needed to center the string
 	int padding = (width - val.length()) / 2;
 
+	// Print out the padding
 	for (int i = 1;i <= padding;i++)
 	{
 		cout << " ";
@@ -61,13 +64,15 @@ void centerString(string val)
 	cout << val << endl;
 }
 
+// Prints out the program header
 void printHeader(string val)
 {
-	printBorder("#");
-	centerString(val);
-	printBorder("#");
+	printBorder("#"); // Print top border
+	centerString(val); // Print the title CONST centered.
+	printBorder("#"); // Print bottom border
 }
 
+// Used to print out any sort of line / border
 void printBorder(string val)
 {
 	for (int i = 1;i <= width;i++) {
