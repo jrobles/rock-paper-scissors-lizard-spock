@@ -15,6 +15,7 @@ void centerString(string val);
 int main()
 {
 	int playerOption;
+	int rules[6][2]; // janky!
 	
 	// Map with the available options.
 	map<int,string> options;
@@ -23,6 +24,18 @@ int main()
 	options[3] = "Scissors";
 	options[4] = "Lizard";
 	options[5] = "Spock";
+
+	// Define the rules based on the options map
+	rules[1][0] = 3; // Rock > Scissors
+	rules[1][1] = 5; // Rock > Lizard
+	rules[2][0] = 1; // Paper > Rock
+	rules[2][1] = 5; // Paper > Spock
+	rules[3][0] = 2; // Sissors > Paper
+	rules[3][1] = 4; // Scissors > Lizard
+	rules[4][0] = 1; // Lizard > Paper
+	rules[4][1] = 5; // Lizard > Spock
+	rules[5][0] = 1; // Spock > Rock
+	rules[5][1] = 3; // Spock > Scissors
 
 	// Print out the fancy program header
 	printHeader(title);
@@ -90,19 +103,6 @@ int computerOption(int size)
 // Used to initiate the player vs. computer match.
 void battle(map<int,string> options,int player,int computer)
 {
-	int rules[6][2]; // janky!
-
-	// Define the rules based on the options map
-	rules[1][0] = 3; // Rock > Scissors
-	rules[1][1] = 5; // Rock > Lizard
-	rules[2][0] = 1; // Paper > Rock
-	rules[2][1] = 5; // Paper > Spock
-	rules[3][0] = 2; // Sissors > Paper
-	rules[3][1] = 4; // Scissors > Lizard
-	rules[4][0] = 1; // Lizard > Paper
-	rules[4][1] = 5; // Lizard > Spock
-	rules[5][0] = 1; // Spock > Rock
-	rules[5][1] = 3; // Spock > Scissors
 
 	// There can only be one!! Or a tie...
 	cout << "\nPlayer choose: " << options[player] << endl;
