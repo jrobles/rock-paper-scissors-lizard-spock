@@ -6,7 +6,7 @@ using namespace std;
 const int width = 80;
 const string title = "Rock, Paper, Scissors, Lizzard, Spock";
 
-int computerOption(int size); 
+int computerHand(int size); 
 void battle(map<int,string> options,int player,int computer);
 void printBorder(string val);
 void printHeader(string val);
@@ -14,7 +14,7 @@ void centerString(string val);
 
 int main()
 {
-	int playerOption;
+	int playerHand;
 	int rules[6][2]; // janky!
 	
 	// Map with the available options.
@@ -52,13 +52,13 @@ int main()
 	do
 	{
 		cout << "Choose an option: ";
-		cin >> playerOption;
-		if (playerOption != 0) { // meh
-			battle(options,playerOption,computerOption(options.size()));
+		cin >> playerHand;
+		if (playerHand != 0) { // meh
+			battle(options,playerHand,computerHand(options.size()));
 		}
 		printBorder("-");
 
-	} while (playerOption != 0);
+	} while (playerHand != 0);
 
 	return 0;
 }
@@ -95,7 +95,7 @@ void printBorder(string val)
 }
 
 // Used to randomly select a number from 1 - the number of options.
-int computerOption(int size) 
+int computerHand(int size) 
 {
 	return rand() % size + 1;
 }
