@@ -7,7 +7,7 @@ const int width = 80;
 const string title = "Rock, Paper, Scissors, Lizzard, Spock";
 
 int computerHand(int size); 
-void battle(map<int,string> options,int player,int computer);
+void battle(map<int,string> options,int player,int computer, int rules[2],int *results);
 void printBorder(string val);
 void printHeader(string val);
 void centerString(string val);
@@ -15,6 +15,7 @@ void centerString(string val);
 int main()
 {
 	int playerHand;
+	int results[3];
 	int rules[6][2]; // janky!
 	
 	// Map with the available options.
@@ -54,7 +55,7 @@ int main()
 		cout << "Choose an option: ";
 		cin >> playerHand;
 		if (playerHand != 0) { // meh
-			battle(options,playerHand,computerHand(options.size()));
+			battle(options,playerHand,computerHand(options.size()), rules[playerHand],*results);
 		}
 		printBorder("-");
 
@@ -101,8 +102,9 @@ int computerHand(int size)
 }
 
 // Used to initiate the player vs. computer match.
-void battle(map<int,string> options,int player,int computer)
+void battle(map<int,string> options,int player,int computer, int rules[2], int *results)
 {
+	bool win = false;
 
 	// There can only be one!! Or a tie...
 	cout << "\nPlayer choose: " << options[player] << endl;
@@ -111,6 +113,16 @@ void battle(map<int,string> options,int player,int computer)
 	{
 		centerString("!!! It's a tie !!!");	
 	} else {
-
+		for (int i = 0;i <= 1;i++) {
+			if (rules[i] == computer) {
+				win = true;
+			}
+		}
+		if (win) {
+			centerString("Player wins!!");	
+		} else {
+			centerString("Computer wins!!");	
+		}
 	}
+	cout << results;
 }
