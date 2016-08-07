@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include <map>
 
 using namespace std;
@@ -34,6 +35,7 @@ int main()
 	int menuOption;
 	competitor player;
 	competitor computer;
+	ofstream stats;
 
 	do
 	{
@@ -58,13 +60,20 @@ int main()
 				playGame(&player,&computer);
 				break;
 			case 3:
+				stats.open ("stats.txt");
+				stats << "Player Wins: " << player.wins << endl;
+				stats << "Player Losses: " << player.losses << endl;
+				stats << "Player Ties: " << player.ties << endl;
+				stats << "\nComputer Wins: " << computer.wins << endl;
+				stats << "Computer Losses: " << computer.losses << endl;
+				stats << "Computer Ties: " << computer.ties << endl;
+				stats.close();
 				centerString("stats.txt updated!");
 				break;
 			case 4:
 				cout << "\nPlayer Wins: " << player.wins << endl;
 				cout << "Player Losses: " << player.losses << endl;
 				cout << "Player Ties: " << player.ties << endl;
-
 				cout << "\nComputer Wins: " << computer.wins << endl;
 				cout << "Computer Losses: " << computer.losses << endl;
 				cout << "Computer Ties: " << computer.ties << endl;
