@@ -18,7 +18,7 @@ struct competitor {
 };
 
 int computerHand(int size); 
-void battle(map<int,string> options,int playerHand,int computerHand, int rules[2]);
+void battle(map<int,string> options,int playerHand,int computerHand, int rules[2],competitor *player, competitor *computer);
 void printBorder(string val);
 void printHeader(string val);
 void centerString(string val);
@@ -100,8 +100,6 @@ void playGame(competitor *player, competitor *computer)
 	// Clear the screen
 	clrScrn();
 
-	player->wins += 3;
-
 	// Print out the fancy program header
 	printHeader(title);
 
@@ -143,7 +141,7 @@ void playGame(competitor *player, competitor *computer)
 		cout << "Choose a hand: ";
 		cin >> playerHand;
 		if (playerHand != 0) { // meh
-			battle(options,playerHand,computerHand(options.size()), rules[playerHand]);
+			battle(options,playerHand,computerHand(options.size()), rules[playerHand],player,computer);
 		}
 		printBorder("-");
 
@@ -194,7 +192,7 @@ int computerHand(int size)
 }
 
 // Used to initiate the player vs. computer match.
-void battle(map<int,string> options,int playerHand,int computerHand, int rules[2])
+void battle(map<int,string> options,int playerHand,int computerHand, int rules[2],competitor *player, competitor *computer)
 {
 	bool win = false;
 
@@ -204,6 +202,8 @@ void battle(map<int,string> options,int playerHand,int computerHand, int rules[2
 	if (playerHand == computerHand)
 	{
 		centerString("!!! It's a tie !!!");	
+			player->ties += 1;
+			computer->ties += 1;
 	} else {
 		for (int i = 0;i <= 1;i++) {
 			if (rules[i] == computerHand) {
@@ -212,8 +212,13 @@ void battle(map<int,string> options,int playerHand,int computerHand, int rules[2
 		}
 		if (win) {
 			centerString("Player wins!!");	
+			player->wins += 1;
+			computer->losses += 1;
+
 		} else {
 			centerString("Computer wins!!");	
+			computer->wins += 1;
+			player->losses += 1;
 		}
 	}
 }
