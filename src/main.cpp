@@ -7,7 +7,8 @@ using namespace std;
 const int width = 80;
 const string title = "Rock, Paper, Scissors, Lizzard, Spock";
 
-struct competitor {
+struct Competitor {
+	string name;
 	int wins;
 	int losses;
 	int ties;
@@ -19,12 +20,12 @@ struct competitor {
 };
 
 int computerHand(int size); 
-void battle(map<int,string> options,int playerHand,int computerHand, int rules[2],competitor *player, competitor *computer);
+void battle(map<int,string> options,int playerHand,int computerHand, int rules[2],Competitor (&competitors)[2]);
 void printBorder(string val);
 void printHeader(string val);
 void centerString(string val);
 void printMenu();
-void playGame(competitor *player, competitor *computer);
+void playGame(Competitor (&competitors)[2]);
 void clrScrn();
 
 int main()
@@ -33,9 +34,11 @@ int main()
 	printMenu();
 
 	int menuOption;
-	competitor player;
-	competitor computer;
+	Competitor competitors[2] = {};
 	ofstream stats;
+
+	competitors[0].name = "Player 1";
+	competitors[1].name = "Computer";
 
 	do
 	{
@@ -57,32 +60,28 @@ int main()
 				cout << "- (and as it always has) Rock crushes Scissors" << endl;
 				break;
 			case 2:
-				playGame(&player,&computer);
+				playGame(competitors);
 				break;
 			case 3:
 				stats.open ("stats.txt");
-				stats << "Player Wins: " << player.wins << endl;
-				stats << "Player Losses: " << player.losses << endl;
-				stats << "Player Ties: " << player.ties << endl;
-				stats << "\nComputer Wins: " << computer.wins << endl;
-				stats << "Computer Losses: " << computer.losses << endl;
-				stats << "Computer Ties: " << computer.ties << endl;
+				for (int i = 0;i <= 1;i++) {					
+					stats << competitors[i].name << " Wins: " << competitors[i].wins << endl;
+					stats << competitors[i].name << " Losses: " << competitors[i].losses << endl;
+					stats << competitors[i].name << " Ties: " << competitors[i].ties << endl;
+				}
 				stats.close();
 				centerString("stats.txt updated!");
 				break;
 			case 4:
-				cout << "\nPlayer Wins: " << player.wins << endl;
-				cout << "Player Losses: " << player.losses << endl;
-				cout << "Player Ties: " << player.ties << endl;
-				cout << "\nComputer Wins: " << computer.wins << endl;
-				cout << "Computer Losses: " << computer.losses << endl;
-				cout << "Computer Ties: " << computer.ties << endl;
-
+				for (int i = 0;i <= 1;i++) {					
+					cout << competitors[i].name << " Wins: " << competitors[i].wins << endl;
+					cout << competitors[i].name << " Losses: " << competitors[i].losses << endl;
+					cout << competitors[i].name << " Ties: " << competitors[i].ties << endl;
+				}
 				break;	
 		}
 	} while (menuOption != 5);
 	clrScrn();
-
 	return 0;
 }
 
@@ -104,7 +103,7 @@ void printMenu()
 	}
 }
 
-void playGame(competitor *player, competitor *computer)
+void playGame(Competitor (&competitors)[2])
 {
 	// Clear the screen
 	clrScrn();
@@ -150,7 +149,7 @@ void playGame(competitor *player, competitor *computer)
 		cout << "Choose a hand: ";
 		cin >> playerHand;
 		if (playerHand != 0) { // meh
-			battle(options,playerHand,computerHand(options.size()), rules[playerHand],player,computer);
+			battle(options,playerHand,computerHand(options.size()), rules[playerHand],competitors);
 		}
 		printBorder("-");
 
@@ -201,7 +200,7 @@ int computerHand(int size)
 }
 
 // Used to initiate the player vs. computer match.
-void battle(map<int,string> options,int playerHand,int computerHand, int rules[2],competitor *player, competitor *computer)
+void battle(map<int,string> options,int playerHand,int computerHand, int rules[2],Competitor (&competitors)[2])
 {
 	bool win = false;
 
@@ -211,8 +210,8 @@ void battle(map<int,string> options,int playerHand,int computerHand, int rules[2
 	if (playerHand == computerHand)
 	{
 		centerString("!!! It's a tie !!!");	
-			player->ties += 1;
-			computer->ties += 1;
+			competitors[0].ties += 1;
+			competitors[1].ties += 1;
 	} else {
 		for (int i = 0;i <= 1;i++) {
 			if (rules[i] == computerHand) {
@@ -221,13 +220,13 @@ void battle(map<int,string> options,int playerHand,int computerHand, int rules[2
 		}
 		if (win) {
 			centerString("Player wins!!");	
-			player->wins += 1;
-			computer->losses += 1;
+			competitors[0].wins += 1;
+			competitors[1].losses += 1;
 
 		} else {
 			centerString("Computer wins!!");	
-			computer->wins += 1;
-			player->losses += 1;
+			competitors[0].losses += 1;
+			competitors[1].wins += 1;
 		}
 	}
 }
