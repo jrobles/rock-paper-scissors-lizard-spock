@@ -65,18 +65,20 @@ int main()
 			case 3:
 				stats.open ("stats.txt");
 				for (int i = 0;i <= 1;i++) {					
-					stats << competitors[i].name << " Wins: " << competitors[i].wins << endl;
-					stats << competitors[i].name << " Losses: " << competitors[i].losses << endl;
-					stats << competitors[i].name << " Ties: " << competitors[i].ties << endl;
+					stats << "\n" << competitors[i].name <<  " Statistics:" << endl;
+					stats << "\t" << competitors[i].name << " Wins: " << competitors[i].wins << endl;
+					stats << "\t" << competitors[i].name << " Losses: " << competitors[i].losses << endl;
+					stats << "\t" << competitors[i].name << " Ties: " << competitors[i].ties << endl;
 				}
 				stats.close();
 				centerString("stats.txt updated!");
 				break;
 			case 4:
 				for (int i = 0;i <= 1;i++) {					
-					cout << competitors[i].name << " Wins: " << competitors[i].wins << endl;
-					cout << competitors[i].name << " Losses: " << competitors[i].losses << endl;
-					cout << competitors[i].name << " Ties: " << competitors[i].ties << endl;
+					cout << "\n" << competitors[i].name <<  " Statistics:" << endl;
+					cout << "\n\t" << competitors[i].name << " Wins: " << competitors[i].wins << endl;
+					cout << "\t" << competitors[i].name << " Losses: " << competitors[i].losses << endl;
+					cout << "\t" << competitors[i].name << " Ties: " << competitors[i].ties << endl;
 				}
 				break;	
 		}
